@@ -1,3 +1,9 @@
+--CREATE DATABASE movieland
+--    WITH 
+--   OWNER = postgres
+--   ENCODING = 'UTF8'
+--   CONNECTION LIMIT = -1;
+
 ------------ users -----------------------------------
 DROP TABLE public.users;
 DROP SEQUENCE public.user_id_seq CASCADE;
@@ -38,7 +44,6 @@ ALTER TABLE public.permissions OWNER to postgres;
 
 CREATE SEQUENCE public.permission_id_seq START 1 INCREMENT 1;
 
-
 ------------ genres -----------------------------------
 DROP TABLE public.genres;
 DROP SEQUENCE public.genre_id_seq CASCADE;
@@ -50,26 +55,70 @@ CREATE TABLE public.genres (
 );
 
 ALTER TABLE ONLY public.genres ADD CONSTRAINT genres_pk PRIMARY KEY (id);
-ALTER TABLE ONLY public.genres ADD CONSTRAINT genres_uk UNIQUE (role,object);
+ALTER TABLE ONLY public.genres ADD CONSTRAINT genres_uk UNIQUE (name);
 
 ALTER TABLE public.genres OWNER to postgres;
 
 CREATE SEQUENCE public.genre_id_seq START 1 INCREMENT 1;
 
+------------ movies -----------------------------------
+DROP TABLE public.movies CASCADE;
+DROP SEQUENCE public.movie_id_seq CASCADE;
 
------------- genres -----------------------------------
-DROP TABLE public.genres;
-DROP SEQUENCE public.genre_id_seq CASCADE;
-
-CREATE TABLE public.genres (
+CREATE TABLE public.movies (
     id            SERIAL                   NOT NULL,
     name          CHARACTER VARYING(255)   NOT NULL,
+    name_orig     CHARACTER VARYING(255)   NOT NULL,
+    year          INTEGER,  
+    country       CHARACTER VARYING(255),
+    genre         CHARACTER VARYING(255),
+    description   CHARACTER VARYING(4000),
+    rating        NUMERIC(5,2),
+    price         NUMERIC,
     creation_date TIMESTAMP WITH TIME ZONE NOT NULL
 );
 
-ALTER TABLE ONLY public.genres ADD CONSTRAINT genres_pk PRIMARY KEY (id);
-ALTER TABLE ONLY public.genres ADD CONSTRAINT genres_uk UNIQUE (role,object);
+ALTER TABLE ONLY public.movies ADD CONSTRAINT movies_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.movies ADD CONSTRAINT movies_uk UNIQUE (name,year,country);
 
-ALTER TABLE public.genres OWNER to postgres;
+ALTER TABLE public.movies OWNER to postgres;
 
-CREATE SEQUENCE public.genre_id_seq START 1 INCREMENT 1;
+CREATE SEQUENCE public.movie_id_seq START 1 INCREMENT 1;
+
+------------ posters -----------------------------------
+DROP TABLE public.posters;
+DROP SEQUENCE public.poster_id_seq CASCADE;
+
+CREATE TABLE public.posters (
+    id            SERIAL                   NOT NULL,
+    movie_id      SERIAL                   NOT NULL,
+    url           CHARACTER VARYING(1000)  NOT NULL,
+    creation_date TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+ALTER TABLE ONLY public.posters ADD CONSTRAINT posters_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.posters ADD CONSTRAINT posters_fk FOREIGN KEY (movie_id) REFERENCES movies(id);
+
+ALTER TABLE public.posters OWNER to postgres;
+
+CREATE SEQUENCE public.poster_id_seq START 1 INCREMENT 1;
+
+-------------- reviews -----------------------------------
+DROP TABLE public.reviews;
+DROP SEQUENCE public.review_id_seq CASCADE;
+
+CREATE TABLE public.reviews (
+    id            SERIAL                   NOT NULL,
+    movie_id      SERIAL                   NOT NULL,
+    author        CHARACTER VARYING(255)   NOT NULL,
+    description   CHARACTER VARYING(1000)  NOT NULL,
+    creation_date TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+ALTER TABLE ONLY public.reviews ADD CONSTRAINT reviews_pk PRIMARY KEY (id);
+ALTER TABLE ONLY public.reviews ADD CONSTRAINT reviews_fk FOREIGN KEY (movie_id) REFERENCES movies(id);
+
+ALTER TABLE public.reviews OWNER to postgres;
+
+CREATE SEQUENCE public.review_id_seq START 1 INCREMENT 1;
+
