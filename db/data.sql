@@ -1,16 +1,16 @@
 //----------------------------------------------------------------------------------------------------
 TRUNCATE TABLE public.users;
 
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Рональд Рейнольдс','ronald.reynolds66@example.com','ca134eaea60f6d7b53268c67decb1b22','alkerwqoef77c2g421',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Дарлин Эдвардс','darlene.edwards15@example.com'   ,'02c0ec42521eb0d08f65349659d3d713','1o2uy3p9f8cyew98y2',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Габриэль Джексон','gabriel.jackson91@example.com' ,'dd26a1b476ec7efbda17b7485bea72f2','askjfo34i5983u4rhn',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Дэрил Брайант','daryl.bryant94@example.com'       ,'8c78bc03fe650285314df0b3498bfb20','wehj0923874310298a',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Нил Паркер','neil.parker43@example.com'           ,'bcf49de24d65c060c3458a202823d7ef','askmweiru32329dusa',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Трэвис Райт','travis.wright36@example.com'        ,'3b0eb9570cd122e81743f92a8cc119d4','as,dm32987e8p;ioDC',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Амелия Кэннеди','amelia.kennedy58@example.com'    ,'299faf4ea562783ce004a214c64481ef','xdkcfnldur23G!@TEG',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Айда Дэвис','ida.davis80@example.com'             ,'7fb52077ccc9b91b7b5c79146098cd17','sdf72q34KJQWHE(!W@',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Джесси Паттерсон','jessie.patterson68@example.com','397b6b263231504d4260d2c5b4736440','fdsfmn;dicudoisfds',CURRENT_TIMESTAMP(0),'User');
-INSERT INTO public.users(id, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'Деннис Крейг','dennis.craig82@example.com'        ,'79d8e6068d8f3a0a8970505241aac3bd','asdfmweirweincIZCu',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User1','Рональд Рейнольдс','ronald.reynolds66@example.com','ca134eaea60f6d7b53268c67decb1b22','alkerwqoef77c2g421',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User2','Дарлин Эдвардс','darlene.edwards15@example.com'   ,'02c0ec42521eb0d08f65349659d3d713','1o2uy3p9f8cyew98y2',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User3','Габриэль Джексон','gabriel.jackson91@example.com' ,'dd26a1b476ec7efbda17b7485bea72f2','askjfo34i5983u4rhn',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User4','Дэрил Брайант','daryl.bryant94@example.com'       ,'8c78bc03fe650285314df0b3498bfb20','wehj0923874310298a',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User5','Нил Паркер','neil.parker43@example.com'           ,'bcf49de24d65c060c3458a202823d7ef','askmweiru32329dusa',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User6','Трэвис Райт','travis.wright36@example.com'        ,'3b0eb9570cd122e81743f92a8cc119d4','as,dm32987e8p;ioDC',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User7','Амелия Кэннеди','amelia.kennedy58@example.com'    ,'299faf4ea562783ce004a214c64481ef','xdkcfnldur23G!@TEG',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User8','Айда Дэвис','ida.davis80@example.com'             ,'7fb52077ccc9b91b7b5c79146098cd17','sdf72q34KJQWHE(!W@',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User9','Джесси Паттерсон','jessie.patterson68@example.com','397b6b263231504d4260d2c5b4736440','fdsfmn;dicudoisfds',CURRENT_TIMESTAMP(0),'User');
+INSERT INTO public.users(id, login, name, email, password, sole, creation_date, role) VALUES (nextval('public.user_id_seq'),'User10','Деннис Крейг','dennis.craig82@example.com','79d8e6068d8f3a0a8970505241aac3bd','asdfmweirweincIZCu',CURRENT_TIMESTAMP(0),'User');
 
 TRUNCATE TABLE public.permissions;
 
@@ -39,7 +39,8 @@ INSERT INTO public.genres(id, name, creation_date) VALUES (nextval('public.genre
 INSERT INTO public.genres(id, name, creation_date) VALUES (nextval('public.genre_id_seq'), 'семейный', CURRENT_TIMESTAMP(0));
 INSERT INTO public.genres(id, name, creation_date) VALUES (nextval('public.genre_id_seq'), 'вестерн', CURRENT_TIMESTAMP(0));
 
-TRUNCATE TABLE public.movies;
+
+TRUNCATE TABLE public.movies CASCADE;
 
 INSERT INTO movies (id,name,name_orig,year,country,genre,description,rating,price,creation_date)                                                  
 SELECT nextval('public.genre_id_seq') AS id,'Побег из Шоушенка' AS name,'The Shawshank Redemption' AS name_orig, 1994 AS year,'США' AS country,'драма, криминал' AS genre,'Успешный банкир Энди Дюфрейн обвинен в убийстве собственной жены и ее любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием, царящими по обе стороны решетки. Каждый, кто попадает в эти стены, становится их рабом до конца жизни. Но Энди, вооруженный живым умом и доброй душой, отказывается мириться с приговором судьбы и начинает разрабатывать невероятно дерзкий план своего освобождения.' AS description,8.9 AS rating,123.45 AS price, CURRENT_TIMESTAMP(0) as creation_date UNION ALL
@@ -141,17 +142,102 @@ SELECT nextval('public.review_id_seq'),m.id,r.author,r.description,CURRENT_TIMES
        ) r
     ON m.name = r.name;
 
+TRUNCATE TABLE movies_genre;
 
+INSERT INTO movies_genre (movie_id, genre_id, creation_date )
+SELECT m.id,g.id,CURRENT_TIMESTAMP(0) as creation_date
+  FROM (SELECT 'Побег из Шоушенка' AS movie_name,'драма' AS genre_name UNION ALL
+        SELECT 'Побег из Шоушенка','криминал' UNION ALL
+        SELECT 'Зеленая миля','фэнтези' UNION ALL
+        SELECT 'Зеленая миля','драма' UNION ALL
+        SELECT 'Зеленая миля','криминал' UNION ALL
+        SELECT 'Зеленая миля','детектив' UNION ALL
+        SELECT 'Форрест Гамп','драма' UNION ALL
+        SELECT 'Форрест Гамп','мелодрама' UNION ALL
+        SELECT 'Список Шиндлера','драма' UNION ALL
+        SELECT 'Список Шиндлера','биография' UNION ALL
+        SELECT '1+1','драма' UNION ALL
+        SELECT '1+1','комедия' UNION ALL
+        SELECT '1+1','биография' UNION ALL
+        SELECT 'Начало','фантастика' UNION ALL
+        SELECT 'Начало','боевик' UNION ALL
+        SELECT 'Начало','триллер' UNION ALL
+        SELECT 'Начало','драма' UNION ALL
+        SELECT 'Начало','детектив' UNION ALL
+        SELECT 'Жизнь прекрасна','драма' UNION ALL
+        SELECT 'Жизнь прекрасна','мелодрама' UNION ALL
+        SELECT 'Жизнь прекрасна','комедия' UNION ALL
+        SELECT 'Бойцовский клуб','триллер' UNION ALL
+        SELECT 'Бойцовский клуб','драма' UNION ALL
+        SELECT 'Бойцовский клуб','криминал' UNION ALL
+        SELECT 'Звёздные войны: Эпизод 4 – Новая надежда','фантастика' UNION ALL
+        SELECT 'Звёздные войны: Эпизод 4 – Новая надежда','фэнтези' UNION ALL
+        SELECT 'Звёздные войны: Эпизод 4 – Новая надежда','боевик' UNION ALL
+        SELECT 'Звёздные войны: Эпизод 4 – Новая надежда','приключения' UNION ALL
+        SELECT 'Звёздные войны: Эпизод 5 – Империя наносит ответный удар','фантастика' UNION ALL
+        SELECT 'Звёздные войны: Эпизод 5 – Империя наносит ответный удар','фэнтези' UNION ALL
+        SELECT 'Звёздные войны: Эпизод 5 – Империя наносит ответный удар','боевик' UNION ALL
+        SELECT 'Звёздные войны: Эпизод 5 – Империя наносит ответный удар','приключения' UNION ALL
+        SELECT 'Унесённые призраками','аниме' UNION ALL
+        SELECT 'Унесённые призраками','мультфильм' UNION ALL
+        SELECT 'Унесённые призраками','фэнтези' UNION ALL
+        SELECT 'Унесённые призраками','приключения' UNION ALL
+        SELECT 'Унесённые призраками','семейный' UNION ALL
+        SELECT 'Титаник','драма' UNION ALL
+        SELECT 'Титаник','мелодрама' UNION ALL
+        SELECT 'Пролетая над гнездом кукушки','драма' UNION ALL
+        SELECT 'Ходячий замок','аниме' UNION ALL
+        SELECT 'Ходячий замок','мультфильм' UNION ALL
+        SELECT 'Ходячий замок','фэнтези' UNION ALL
+        SELECT 'Ходячий замок','приключения' UNION ALL
+        SELECT 'Гладиатор','боевик' UNION ALL
+        SELECT 'Гладиатор','драма' UNION ALL
+        SELECT 'Большой куш','комедия' UNION ALL
+        SELECT 'Темный рыцарь','фантастика' UNION ALL
+        SELECT 'Темный рыцарь','боевик' UNION ALL
+        SELECT 'Темный рыцарь','триллер' UNION ALL
+        SELECT 'Темный рыцарь','криминал' UNION ALL
+        SELECT 'Темный рыцарь','драма' UNION ALL
+        SELECT 'Как приручить дракона','мультфильм' UNION ALL
+        SELECT 'Как приручить дракона','фэнтези' UNION ALL
+        SELECT 'Как приручить дракона','комедия' UNION ALL
+        SELECT 'Как приручить дракона','приключения' UNION ALL
+        SELECT 'Как приручить дракона','семейный' UNION ALL
+        SELECT 'Молчание ягнят','триллер' UNION ALL
+        SELECT 'Молчание ягнят','криминал' UNION ALL
+        SELECT 'Молчание ягнят','детектив' UNION ALL
+        SELECT 'Молчание ягнят','драма' UNION ALL
+        SELECT 'Гран Торино','драма' UNION ALL
+        SELECT 'Хороший, плохой, злой','вестерн' UNION ALL
+        SELECT 'Укрощение строптивого','комедия' UNION ALL
+        SELECT 'Блеф','комедия' UNION ALL
+        SELECT 'Блеф','криминал' UNION ALL
+        SELECT 'Джанго освобожденный','драма' UNION ALL
+        SELECT 'Джанго освобожденный','вестерн' UNION ALL
+        SELECT 'Джанго освобожденный','приключения' UNION ALL
+        SELECT 'Джанго освобожденный','комедия' UNION ALL
+        SELECT 'Танцующий с волками','драма' UNION ALL
+        SELECT 'Танцующий с волками','приключения' UNION ALL
+        SELECT 'Танцующий с волками','вестерн'
+       ) t
+   JOIN movies m
+     ON m.name = t.movie_name
+   LEFT JOIN genres g
+     ON g.name =t.genre_name
+;
+
+                                                            
 SELECT table_name, 
        obj_count, 
        CASE 
           WHEN obj_count > 0 THEN 'PASS' 
           ELSE 'FAIL' 
         END AS count_check 
-  FROM (SELECT 'users'       AS table_name, COUNT(*) AS obj_count FROM users UNION ALL
-        SELECT 'permissions' AS table_name, COUNT(*) AS obj_count FROM permissions UNION ALL
-        SELECT 'genres'      AS table_name, COUNT(*) AS obj_count FROM genres UNION ALL
-        SELECT 'movies'      AS table_name, COUNT(*) AS obj_count FROM permissions UNION ALL
-        SELECT 'posters'     AS table_name, COUNT(*) AS obj_count FROM permissions UNION ALL
-        SELECT 'reviews'     AS table_name, COUNT(*) AS obj_count FROM permissions
+  FROM (SELECT 'users'        AS table_name, COUNT(*) AS obj_count FROM users UNION ALL
+        SELECT 'permissions'  AS table_name, COUNT(*) AS obj_count FROM permissions UNION ALL
+        SELECT 'genres'       AS table_name, COUNT(*) AS obj_count FROM genres UNION ALL
+        SELECT 'movies'       AS table_name, COUNT(*) AS obj_count FROM movies UNION ALL
+    SELECT 'movies_genre' AS table_name, COUNT(*) AS obj_count FROM movies_genre UNION ALL
+        SELECT 'posters'      AS table_name, COUNT(*) AS obj_count FROM posters UNION ALL
+        SELECT 'reviews'      AS table_name, COUNT(*) AS obj_count FROM reviews
        ) t;
