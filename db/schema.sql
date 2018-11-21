@@ -71,7 +71,7 @@ CREATE TABLE public.movies (
     name_orig     CHARACTER VARYING(255)   NOT NULL,
     year          INTEGER,  
     country       CHARACTER VARYING(255),
-    genre         CHARACTER VARYING(255),
+    --genre         CHARACTER VARYING(255),
     description   CHARACTER VARYING(4000),
     rating        NUMERIC(5,2),
     price         NUMERIC,
