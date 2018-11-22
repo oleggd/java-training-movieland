@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MovieService {
 
-    String getAll();
+    List<Movie> getAll();
 }

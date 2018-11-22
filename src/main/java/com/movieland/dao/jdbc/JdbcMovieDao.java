@@ -15,10 +15,8 @@ import java.util.Map;
 @Repository("JdbcMovieDao")
 public class JdbcMovieDao implements MovieDao {
 
-    @Autowired
+    private final static MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private NamedParameterJdbcTemplate namedJdbcTemplate;
 
     @Autowired
@@ -26,9 +24,14 @@ public class JdbcMovieDao implements MovieDao {
 
     @Override
     public List<Movie> getAll() {
-
-        List<Movie> movies = jdbcTemplate.query(getMovieAllSQL, new MovieRowMapper());
-
-        return movies;
+        return jdbcTemplate.query(getMovieAllSQL, MOVIE_ROW_MAPPER);
+    }
+    @Autowired
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+    @Autowired
+    public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
+        this.namedJdbcTemplate = namedJdbcTemplate;
     }
 }

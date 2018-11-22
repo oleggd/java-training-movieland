@@ -14,7 +14,7 @@
     <import resource="query.xml"/>
 
     <context:component-scan base-package="com.movieland">
-        <context:exclude-filter type="regex" expression="com\.movieland\controller\..*"/>
+        <context:exclude-filter type="regex" expression="com\.movieland\.controller\..*"/>
     </context:component-scan>
 
     <context:property-placeholder location="classpath:app.properties" />
@@ -29,10 +29,13 @@
 
     <!-- Migrate to Apache Common DataSource please!!! -->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${driver}"/>
-        <property name="url" value="${url}"/>
-        <property name="username" value="${username}"/>
-        <property name="password" value="${password}"/>
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="InitialSize" value="1"/>
+        <property name="MaxTotal" value="2"/>
+        <property name="ValidationQuery" value="Select 1 "/>
     </bean>
 
 </beans>

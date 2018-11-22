@@ -14,12 +14,7 @@ public class MovieServiceImpl implements MovieService {
     private MovieDao movieDao;
 
     @Override
-    public String getAll() {
-        List<Movie> movies = movieDao.getAll();
-
-        for (Movie movie : movies) {
-            return movie.toString();
-        }
-        return "";
+    public List<Movie> getAll() {
+        return movieDao.getAll();
     }
 }
