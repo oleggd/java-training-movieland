@@ -31,7 +31,8 @@ public class JdbcMovieDao implements MovieDao {
 
     @Override
     public List<Movie> getRandom() {
-        log.info("Get random movie request : " + randomValue);
+        log.info("Get random movie.");
+        log.debug("Get random movie request : {}", randomValue);
         return jdbcTemplate.query(getRandomMovieSQL, MOVIE_ROW_MAPPER, randomValue);
     }
 
