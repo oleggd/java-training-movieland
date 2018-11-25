@@ -10,11 +10,16 @@ import java.util.List;
 
 @Service("movieService")
 public class MovieServiceImpl implements MovieService {
-    @Autowired
+
     private MovieDao movieDao;
 
     @Override
     public List<Movie> getAll() {
         return movieDao.getAll();
+    }
+
+    @Autowired
+    public void setMovieDao(MovieDao movieDao) {
+        this.movieDao = movieDao;
     }
 }
