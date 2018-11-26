@@ -3,7 +3,6 @@ package com.movieland.dao.jdbc.mapper;
 import com.movieland.entity.Movie;
 import org.springframework.jdbc.core.RowMapper;
 
-//import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -14,7 +13,7 @@ public class MovieRowMapper implements RowMapper<Movie> {
 
         movie.setId(resultSet.getInt("id"));
         movie.setName(resultSet.getString("name"));
-        movie.setNameOrig(resultSet.getString("name_orig"));
+        movie.setNameOriginal(resultSet.getString("name_orig"));
         movie.setYear(resultSet.getInt("year"));
         movie.setCountry(resultSet.getString("country"));
         movie.setRating(resultSet.getDouble("rating"));

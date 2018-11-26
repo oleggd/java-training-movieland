@@ -24,14 +24,18 @@
         <constructor-arg ref="dataSource"/>
     </bean>
 
+    <bean class="java.net.URI" id="dbUrl">
+        <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+    </bean>
+
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-        <property name="InitialSize" value="1"/>
-        <property name="MaxTotal" value="2"/>
-        <property name="ValidationQuery" value="Select 1 "/>
+        <property name="url" value="#{'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"/>
+        <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+        <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+        <property name="initialSize" value="${dbcp.initialSize}"/>
+        <property name="maxTotal" value="${dbcp.maxTotal}"/>
+        <property name="validationQuery" value="${dbcp.validationQuery}"/>
     </bean>
 
 </beans>

@@ -7,6 +7,9 @@
     <bean id="getMovieAllSQL" class="java.lang.String">
         <constructor-arg value="SELECT m.id, m.name, m.name_orig, m.year, m.country, m.rating, m.price, m.creation_date, p.url FROM movies m JOIN posters p ON m.id = p.movie_id"/>
     </bean>
+    <bean id="getRandomMovieSQL" class="java.lang.String">
+        <constructor-arg value="SELECT m.id, m.name, m.name_orig, m.year, m.country, m.rating, m.price, m.creation_date, p.url FROM movies m JOIN posters p ON m.id = p.movie_id ORDER BY RANDOM() LIMIT ?"/>
+    </bean>
 
 </beans>
 
