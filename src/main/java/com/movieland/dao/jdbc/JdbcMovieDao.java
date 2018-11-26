@@ -19,7 +19,9 @@ public class JdbcMovieDao implements MovieDao {
 
     private JdbcTemplate jdbcTemplate;
     private String getMovieAllSQL;
-    private String getRandomMovieSQL;
+    private String getMovieRandomSQL;
+    private String getMovieByGenreSQL;
+
     @Value("${movie.randomCount:3}")
     private int randomCount;
 
@@ -33,7 +35,14 @@ public class JdbcMovieDao implements MovieDao {
     public List<Movie> getRandom() {
         log.info("Get random movie.");
         log.debug("Get random movie request : {}", randomCount);
-        return jdbcTemplate.query(getRandomMovieSQL, MOVIE_ROW_MAPPER, randomCount);
+        return jdbcTemplate.query(getMovieRandomSQL, MOVIE_ROW_MAPPER, randomCount);
+    }
+
+    @Override
+    public List<Movie> getByGenre(int id) {
+        log.info("Get movie by genre {}",id);
+
+        return jdbcTemplate.query(getMovieByGenreSQL, MOVIE_ROW_MAPPER, id);
     }
 
     @Autowired
@@ -47,6 +56,9 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     @Autowired
-    public void setGetRandomMovieSQL(String getRandomMovieSQL) { this.getRandomMovieSQL = getRandomMovieSQL; }
+    public void setGetMovieRandomSQL(String getMovieRandomSQL) { this.getMovieRandomSQL = getMovieRandomSQL; }
+
+    @Autowired
+    public void setGetMovieByGenreSQL(String getMovieByGenreSQL) { this.getMovieByGenreSQL = getMovieByGenreSQL; }
 
 }
