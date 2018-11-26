@@ -41,7 +41,7 @@ public class MovieRowMapperTest {
         log.debug("Test: run test");
         assertEquals(25, firstMovie.getId());
         assertEquals("Первый фильм", firstMovie.getName());
-        assertEquals("First movie", firstMovie.getNameOrig());
+        assertEquals("First movie", firstMovie.getNameOriginal());
         assertEquals(2018, firstMovie.getYear());
         assertEquals("USA", firstMovie.getCountry());
         assertEquals(50.1, firstMovie.getRating(),0.01);

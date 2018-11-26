@@ -6,7 +6,7 @@ public class Movie {
 
     private int id;
     private String name;
-    private String nameOrig;
+    private String nameOriginal;
     private int year;
     private String country;
     private String description;
@@ -23,12 +23,12 @@ public class Movie {
         this.name = name;
     }
 
-    public String getNameOrig() {
-        return nameOrig;
+    public String getNameOriginal() {
+        return nameOriginal;
     }
 
-    public void setNameOrig(String nameOrig) {
-        this.nameOrig = nameOrig;
+    public void setNameOriginal(String nameOrig) {
+        this.nameOriginal = nameOrig;
     }
 
     public int getYear() {
@@ -99,7 +99,7 @@ public class Movie {
         return " Movie {" +
                 " id : " + id + "," +
                 " name : " + name + "," +
-                " nameOriginal : " + nameOrig + "," +
+                " nameOriginal : " + nameOriginal + "," +
                 " year : " + year + "," +
                 " country : " + country + "," +
                 " description : " + description + "," +

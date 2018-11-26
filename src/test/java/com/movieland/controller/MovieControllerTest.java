@@ -53,7 +53,7 @@ public class MovieControllerTest {
         log.debug("Test: get all movies - adding first movie");
         firstMovie.setId(25);
         firstMovie.setName("Первый фильм");
-        firstMovie.setNameOrig("First movie");
+        firstMovie.setNameOriginal("First movie");
         firstMovie.setYear(2018);
         firstMovie.setCountry("USA");
         firstMovie.setRating(50.1);
@@ -64,7 +64,7 @@ public class MovieControllerTest {
         log.debug("Test: get all movies - adding second movie");
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
-        secondMovie.setNameOrig("Second movie");
+        secondMovie.setNameOriginal("Second movie");
         secondMovie.setYear(2000);
         secondMovie.setCountry("JPN");
         secondMovie.setRating(0.1);
@@ -108,7 +108,7 @@ public class MovieControllerTest {
         log.debug("Test: get random movies - adding first movie");
         firstMovie.setId(25);
         firstMovie.setName("Первый фильм");
-        firstMovie.setNameOrig("First movie");
+        firstMovie.setNameOriginal("First movie");
         firstMovie.setYear(2018);
         firstMovie.setCountry("USA");
         firstMovie.setRating(50.1);
@@ -119,7 +119,7 @@ public class MovieControllerTest {
         log.debug("Test: get random movies - adding second movie");
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
-        secondMovie.setNameOrig("Second movie");
+        secondMovie.setNameOriginal("Second movie");
         secondMovie.setYear(2000);
         secondMovie.setCountry("JPN");
         secondMovie.setRating(0.1);
