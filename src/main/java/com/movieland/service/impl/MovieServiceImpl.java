@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service//("movieService")
+@Service
 public class MovieServiceImpl implements MovieService {
 
     private MovieDao movieDao;
