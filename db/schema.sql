@@ -71,7 +71,7 @@ CREATE TABLE public.movies (
     name_orig     CHARACTER VARYING(255)   NOT NULL,
     year          INTEGER,  
     country       CHARACTER VARYING(255),
-    genre         CHARACTER VARYING(255),
+    --genre         CHARACTER VARYING(255),
     description   CHARACTER VARYING(4000),
     rating        NUMERIC(5,2),
     price         NUMERIC,
@@ -84,6 +84,21 @@ ALTER TABLE ONLY public.movies ADD CONSTRAINT movies_uk UNIQUE (name,year,countr
 ALTER TABLE public.movies OWNER to postgres;
 
 CREATE SEQUENCE public.movie_id_seq START 1 INCREMENT 1;
+
+------------ movies_genre -----------------------------------
+DROP TABLE public.movies_genre;
+
+CREATE TABLE public.movies_genre (
+    movie_id      SERIAL                   NOT NULL,
+    genre_id      SERIAL                   NOT NULL,
+    creation_date TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+ALTER TABLE ONLY public.movies_genre ADD CONSTRAINT movies_genre_pk PRIMARY KEY (movie_id,genre_id);
+ALTER TABLE ONLY public.movies_genre ADD CONSTRAINT movies_genre_fk1 FOREIGN KEY (movie_id) REFERENCES movies(id);
+ALTER TABLE ONLY public.movies_genre ADD CONSTRAINT movies_genre_fk2 FOREIGN KEY (genre_id) REFERENCES genre(id);
+
+ALTER TABLE public.movies_genre OWNER to postgres;
 
 ------------ posters -----------------------------------
 DROP TABLE public.posters;
