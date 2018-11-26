@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 //import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -27,6 +29,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class MovieControllerTest {
 
     private MockMvc mockMvc;
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     @Mock
     MovieServiceImpl movieService;
     @InjectMocks
@@ -40,15 +44,16 @@ public class MovieControllerTest {
 
     @Test
     public void getAllMovieTest() throws Exception {
-
+        log.info("Test: get all movies started...");
         Movie firstMovie = new Movie();
         Movie secondMovie = new Movie();
         LocalDateTime currentTime = LocalDateTime.now();
         Timestamp currentTimestamp = Timestamp.valueOf(currentTime);
         //
+        log.debug("Test: get all movies - adding first movie");
         firstMovie.setId(25);
         firstMovie.setName("Первый фильм");
-        firstMovie.setNameOrig("First movie");
+        firstMovie.setNameOriginal("First movie");
         firstMovie.setYear(2018);
         firstMovie.setCountry("USA");
         firstMovie.setRating(50.1);
@@ -56,9 +61,10 @@ public class MovieControllerTest {
         firstMovie.setCreationDate(currentTime);
         firstMovie.setPoster("poster1.jpg");
         //
+        log.debug("Test: get all movies - adding second movie");
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
-        secondMovie.setNameOrig("Second movie");
+        secondMovie.setNameOriginal("Second movie");
         secondMovie.setYear(2000);
         secondMovie.setCountry("JPN");
         secondMovie.setRating(0.1);
@@ -68,6 +74,7 @@ public class MovieControllerTest {
 
         when(movieService.getAll()).thenReturn(Arrays.asList(firstMovie, secondMovie));
 
+        log.debug("Test: get all movies - running tests");
         mockMvc.perform(get("/movie"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -89,17 +96,19 @@ public class MovieControllerTest {
 
         verify(movieService, times(1)).getAll();
         verifyNoMoreInteractions(movieService);
+        log.info("Test: get all movies finished...");
     }
     @Test
     public void getRandomMovieTest() throws Exception {
-
+        log.info("Test: get random movies starting...");
         Movie firstMovie = new Movie();
         Movie secondMovie = new Movie();
         LocalDateTime currentTime = LocalDateTime.now();
         //
+        log.debug("Test: get random movies - adding first movie");
         firstMovie.setId(25);
         firstMovie.setName("Первый фильм");
-        firstMovie.setNameOrig("First movie");
+        firstMovie.setNameOriginal("First movie");
         firstMovie.setYear(2018);
         firstMovie.setCountry("USA");
         firstMovie.setRating(50.1);
@@ -107,9 +116,10 @@ public class MovieControllerTest {
         firstMovie.setCreationDate(currentTime);
         firstMovie.setPoster("poster1.jpg");
         //
+        log.debug("Test: get random movies - adding second movie");
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
-        secondMovie.setNameOrig("Second movie");
+        secondMovie.setNameOriginal("Second movie");
         secondMovie.setYear(2000);
         secondMovie.setCountry("JPN");
         secondMovie.setRating(0.1);
@@ -118,7 +128,7 @@ public class MovieControllerTest {
         secondMovie.setPoster("poster2.jpg");
 
         when(movieService.getRandom()).thenReturn(Arrays.asList(firstMovie, secondMovie));
-
+        log.debug("Test: get random movies - running tests");
         mockMvc.perform(get("/movie/random"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -140,6 +150,7 @@ public class MovieControllerTest {
 
         verify(movieService, times(1)).getRandom();
         verifyNoMoreInteractions(movieService);
+        log.info("Test: get random movies finished.");
     }
 }
 
