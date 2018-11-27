@@ -1,0 +1,12 @@
+# database configuration
+jdbc:
+    driver : org.postgresql.Driver
+
+# movie random
+movie :
+  randomCount: 3
+
+dbcp :
+    initialSize : 1
+    maxTotal    : 2
+    validationQuery : Select 1 

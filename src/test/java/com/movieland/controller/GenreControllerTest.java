@@ -28,7 +28,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class GenreControllerTest {
 
     private MockMvc mockMvc;
-    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Mock
     GenreServiceImpl genreService;
@@ -43,25 +42,21 @@ public class GenreControllerTest {
 
     @Test
     public void getAllGenreTest() throws Exception {
-        log.info("Test: get all genres started...");
         Genre firstGenre = new Genre();
         Genre secondGenre = new Genre();
         LocalDateTime currentTime = LocalDateTime.now();
         Timestamp currentTimestamp = Timestamp.valueOf(currentTime);
         //
-        log.debug("Test: get all genres - adding first genre");
         firstGenre.setId(1);
         firstGenre.setName("боевик");
         firstGenre.setCreationDate(currentTime);
         //
-        log.debug("Test: get all genres - adding second genre");
         secondGenre.setId(2);
         secondGenre.setName("комедия");
         secondGenre.setCreationDate(currentTime);
 
         when(genreService.getAll()).thenReturn(Arrays.asList(firstGenre, secondGenre));
 
-        log.debug("Test: get all genres - running tests");
         mockMvc.perform(get("/genre"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -73,7 +68,6 @@ public class GenreControllerTest {
 
         verify(genreService, times(1)).getAll();
         verifyNoMoreInteractions(genreService);
-        log.info("Test: get all genres finished...");
     }
 }
 

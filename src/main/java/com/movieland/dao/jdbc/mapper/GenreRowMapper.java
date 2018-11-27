@@ -13,8 +13,6 @@ public class GenreRowMapper implements RowMapper<Genre> {
 
         genre.setId(resultSet.getInt("id"));
         genre.setName(resultSet.getString("name"));
-        Timestamp creationDate = resultSet.getTimestamp("creation_date");
-        genre.setCreationDate(creationDate.toLocalDateTime());
         return genre;
     }
 }

@@ -15,18 +15,15 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class MovieRowMapperTest {
-    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Test
     public void mapRow() throws SQLException {
-        log.info("Test: map rows started...");
 
         MovieRowMapper movieRowMapper = new MovieRowMapper();
         ResultSet resultSet = mock(ResultSet.class);
         LocalDateTime currentTime = LocalDateTime.now();
         Timestamp currentTimestamp = Timestamp.valueOf(currentTime);
 
-        log.debug("Test: set test data");
         when(resultSet.getInt("id")).thenReturn(25);
         when(resultSet.getString("name")).thenReturn("Первый фильм");
         when(resultSet.getString("name_orig")).thenReturn("First movie");
@@ -38,7 +35,6 @@ public class MovieRowMapperTest {
         when(resultSet.getString("url")).thenReturn("poster.jpg");
 
         Movie firstMovie = movieRowMapper.mapRow(resultSet,1);
-        log.debug("Test: run test");
         assertEquals(25, firstMovie.getId());
         assertEquals("Первый фильм", firstMovie.getName());
         assertEquals("First movie", firstMovie.getNameOriginal());
@@ -47,7 +43,5 @@ public class MovieRowMapperTest {
         assertEquals(50.1, firstMovie.getRating(),0.01);
         assertEquals(125.3, firstMovie.getPrice(),0.01);
         assertEquals("poster.jpg", firstMovie.getPoster());
-
-        log.info("Test: map rows finished...");
     }
 }
