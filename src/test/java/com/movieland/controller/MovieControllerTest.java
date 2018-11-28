@@ -29,7 +29,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class MovieControllerTest {
 
     private MockMvc mockMvc;
-    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Mock
     MovieServiceImpl movieService;
@@ -44,13 +43,11 @@ public class MovieControllerTest {
 
     @Test
     public void getAllMovieTest() throws Exception {
-        log.info("Test: get all movies started...");
         Movie firstMovie = new Movie();
         Movie secondMovie = new Movie();
         LocalDateTime currentTime = LocalDateTime.now();
         Timestamp currentTimestamp = Timestamp.valueOf(currentTime);
         //
-        log.debug("Test: get all movies - adding first movie");
         firstMovie.setId(25);
         firstMovie.setName("Первый фильм");
         firstMovie.setNameOriginal("First movie");
@@ -61,7 +58,6 @@ public class MovieControllerTest {
         firstMovie.setCreationDate(currentTime);
         firstMovie.setPoster("poster1.jpg");
         //
-        log.debug("Test: get all movies - adding second movie");
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
         secondMovie.setNameOriginal("Second movie");
@@ -74,21 +70,20 @@ public class MovieControllerTest {
 
         when(movieService.getAll()).thenReturn(Arrays.asList(firstMovie, secondMovie));
 
-        log.debug("Test: get all movies - running tests");
         mockMvc.perform(get("/movie"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(25)))
                 .andExpect(jsonPath("$[0].name", is("Первый фильм")))
-                .andExpect(jsonPath("$[0].nameOrig", is("First movie")))
+                .andExpect(jsonPath("$[0].nameOriginal", is("First movie")))
                 .andExpect(jsonPath("$[0].year", is(2018)))
                 .andExpect(jsonPath("$[0].rating", is(50.1)))
                 .andExpect(jsonPath("$[0].price", is(125.3)))
                 .andExpect(jsonPath("$[0].poster", is("poster1.jpg")))
                 .andExpect(jsonPath("$[1].id", is(26)))
                 .andExpect(jsonPath("$[1].name", is("Второй фильм")))
-                .andExpect(jsonPath("$[1].nameOrig", is("Second movie")))
+                .andExpect(jsonPath("$[1].nameOriginal", is("Second movie")))
                 .andExpect(jsonPath("$[1].year", is(2000)))
                 .andExpect(jsonPath("$[1].rating", is(0.1)))
                 .andExpect(jsonPath("$[1].price", is(25.3)))
@@ -96,16 +91,13 @@ public class MovieControllerTest {
 
         verify(movieService, times(1)).getAll();
         verifyNoMoreInteractions(movieService);
-        log.info("Test: get all movies finished...");
     }
     @Test
     public void getRandomMovieTest() throws Exception {
-        log.info("Test: get random movies starting...");
         Movie firstMovie = new Movie();
         Movie secondMovie = new Movie();
         LocalDateTime currentTime = LocalDateTime.now();
         //
-        log.debug("Test: get random movies - adding first movie");
         firstMovie.setId(25);
         firstMovie.setName("Первый фильм");
         firstMovie.setNameOriginal("First movie");
@@ -116,7 +108,6 @@ public class MovieControllerTest {
         firstMovie.setCreationDate(currentTime);
         firstMovie.setPoster("poster1.jpg");
         //
-        log.debug("Test: get random movies - adding second movie");
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
         secondMovie.setNameOriginal("Second movie");
@@ -128,21 +119,20 @@ public class MovieControllerTest {
         secondMovie.setPoster("poster2.jpg");
 
         when(movieService.getRandom()).thenReturn(Arrays.asList(firstMovie, secondMovie));
-        log.debug("Test: get random movies - running tests");
         mockMvc.perform(get("/movie/random"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(25)))
                 .andExpect(jsonPath("$[0].name", is("Первый фильм")))
-                .andExpect(jsonPath("$[0].nameOrig", is("First movie")))
+                .andExpect(jsonPath("$[0].nameOriginal", is("First movie")))
                 .andExpect(jsonPath("$[0].year", is(2018)))
                 .andExpect(jsonPath("$[0].rating", is(50.1)))
                 .andExpect(jsonPath("$[0].price", is(125.3)))
                 .andExpect(jsonPath("$[0].poster", is("poster1.jpg")))
                 .andExpect(jsonPath("$[1].id", is(26)))
                 .andExpect(jsonPath("$[1].name", is("Второй фильм")))
-                .andExpect(jsonPath("$[1].nameOrig", is("Second movie")))
+                .andExpect(jsonPath("$[1].nameOriginal", is("Second movie")))
                 .andExpect(jsonPath("$[1].year", is(2000)))
                 .andExpect(jsonPath("$[1].rating", is(0.1)))
                 .andExpect(jsonPath("$[1].price", is(25.3)))
@@ -150,7 +140,57 @@ public class MovieControllerTest {
 
         verify(movieService, times(1)).getRandom();
         verifyNoMoreInteractions(movieService);
-        log.info("Test: get random movies finished.");
     }
+    @Test
+    public void getMovieByGenreTest() throws Exception {
+        Movie firstMovie = new Movie();
+        Movie secondMovie = new Movie();
+        LocalDateTime currentTime = LocalDateTime.now();
+        //
+        firstMovie.setId(25);
+        firstMovie.setName("Первый фильм");
+        firstMovie.setNameOriginal("First movie");
+        firstMovie.setYear(2018);
+        firstMovie.setCountry("USA");
+        firstMovie.setRating(50.1);
+        firstMovie.setPrice(125.3);
+        firstMovie.setCreationDate(currentTime);
+        firstMovie.setPoster("poster1.jpg");
+        //
+        secondMovie.setId(26);
+        secondMovie.setName("Второй фильм");
+        secondMovie.setNameOriginal("Second movie");
+        secondMovie.setYear(2000);
+        secondMovie.setCountry("JPN");
+        secondMovie.setRating(0.1);
+        secondMovie.setPrice(25.3);
+        secondMovie.setCreationDate(currentTime);
+        secondMovie.setPoster("poster2.jpg");
+
+        when(movieService.getByGenre(1)).thenReturn(Arrays.asList(firstMovie, secondMovie));
+
+        mockMvc.perform(get("/movie/genre/?id=1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].id", is(25)))
+                .andExpect(jsonPath("$[0].name", is("Первый фильм")))
+                .andExpect(jsonPath("$[0].nameOriginal", is("First movie")))
+                .andExpect(jsonPath("$[0].year", is(2018)))
+                .andExpect(jsonPath("$[0].rating", is(50.1)))
+                .andExpect(jsonPath("$[0].price", is(125.3)))
+                .andExpect(jsonPath("$[0].poster", is("poster1.jpg")))
+                .andExpect(jsonPath("$[1].id", is(26)))
+                .andExpect(jsonPath("$[1].name", is("Второй фильм")))
+                .andExpect(jsonPath("$[1].nameOriginal", is("Second movie")))
+                .andExpect(jsonPath("$[1].year", is(2000)))
+                .andExpect(jsonPath("$[1].rating", is(0.1)))
+                .andExpect(jsonPath("$[1].price", is(25.3)))
+                .andExpect(jsonPath("$[1].poster", is("poster2.jpg")));
+
+        verify(movieService, times(1)).getByGenre(1);
+        verifyNoMoreInteractions(movieService);
+    }
+
 }
 
