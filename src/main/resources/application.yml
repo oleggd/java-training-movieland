@@ -1,10 +1,12 @@
-# database configuration
 jdbc:
     driver : org.postgresql.Driver
 
-# movie random
 movie :
-  randomCount: 3
+  randomCount: 1
+
+cache:
+  initialDelay : 10000
+  fixedDelay   : 14400000
 
 dbcp :
     initialSize : 1

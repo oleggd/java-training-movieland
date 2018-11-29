@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 public class GenreRowMapper implements RowMapper<Genre> {
     public Genre mapRow (ResultSet resultSet, int rowId) throws SQLException {

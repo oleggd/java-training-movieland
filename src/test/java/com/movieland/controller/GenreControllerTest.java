@@ -44,16 +44,12 @@ public class GenreControllerTest {
     public void getAllGenreTest() throws Exception {
         Genre firstGenre = new Genre();
         Genre secondGenre = new Genre();
-        LocalDateTime currentTime = LocalDateTime.now();
-        Timestamp currentTimestamp = Timestamp.valueOf(currentTime);
         //
         firstGenre.setId(1);
         firstGenre.setName("боевик");
-        firstGenre.setCreationDate(currentTime);
         //
         secondGenre.setId(2);
         secondGenre.setName("комедия");
-        secondGenre.setCreationDate(currentTime);
 
         when(genreService.getAll()).thenReturn(Arrays.asList(firstGenre, secondGenre));
 

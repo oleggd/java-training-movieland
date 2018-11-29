@@ -23,7 +23,7 @@ public class JdbcMovieDao implements MovieDao {
     private String getMovieRandomSQL;
     private String getMovieByGenreSQL;
 
-    @Value("${movie.randomCount:3}")
+    @Value("${movie.randomCount:5}")
     private int randomCount;
 
     @Override

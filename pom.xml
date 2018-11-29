@@ -87,7 +87,11 @@
             <artifactId>commons-dbcp2</artifactId>
             <version>${apache.commons.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.23</version>
+        </dependency>
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>

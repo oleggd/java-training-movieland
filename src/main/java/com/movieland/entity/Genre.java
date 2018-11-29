@@ -6,7 +6,6 @@ public class Genre {
 
     private int id;
     private String name;
-    private LocalDateTime creationDate;
 
     public String getName() {
         return name;
@@ -14,14 +13,6 @@ public class Genre {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
     }
 
     public int getId() {
@@ -35,7 +26,6 @@ public class Genre {
     public String toString(){
         return " Genre {" +
                 " id : " + id + "," +
-                " name : " + name + "," +
-                " creationDate : " + creationDate;
+                " name : " + name;
     }
 }

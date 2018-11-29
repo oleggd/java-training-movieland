@@ -22,12 +22,9 @@ public class GenreRowMapperTest {
 
         GenreRowMapper movieRowMapper = new GenreRowMapper();
         ResultSet resultSet           = mock(ResultSet.class);
-        LocalDateTime currentTime     = LocalDateTime.now();
-        Timestamp currentTimestamp    = Timestamp.valueOf(currentTime);
 
         when(resultSet.getInt("id")).thenReturn(1);
         when(resultSet.getString("name")).thenReturn("боевик");
-        when(resultSet.getTimestamp("creation_date")).thenReturn(currentTimestamp);
 
         Genre firstGenre = movieRowMapper.mapRow(resultSet,1);
         assertEquals(1, firstGenre.getId());
