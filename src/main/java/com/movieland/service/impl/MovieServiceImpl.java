@@ -1,6 +1,7 @@
 package com.movieland.service.impl;
 
 import com.movieland.dao.MovieDao;
+import com.movieland.dao.jdbc.RequestParameters;
 import com.movieland.entity.Movie;
 import com.movieland.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,16 @@ public class MovieServiceImpl implements MovieService {
     private MovieDao movieDao;
 
     @Override
-    public List<Movie> getAll() {
-        return movieDao.getAll();
+    public List<Movie> getAll(RequestParameters requestParameters) {
+        return movieDao.getAll(requestParameters);
     }
 
     @Override
     public List<Movie> getRandom() { return movieDao.getRandom(); }
 
     @Override
-    public List<Movie> getByGenre(int id) {
-        return movieDao.getByGenre(id);
+    public List<Movie> getByGenre(int id, RequestParameters requestParameters) {
+        return movieDao.getByGenre(id, requestParameters);
     }
 
     @Autowired

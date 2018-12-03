@@ -1,5 +1,7 @@
 package com.movieland.controller;
 
+import com.movieland.dao.jdbc.RequestParameters;
+import com.movieland.dao.util.SortDirection;
 import com.movieland.entity.Movie;
 import com.movieland.service.MovieService;
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/movie")
@@ -21,10 +24,35 @@ public class MovieController {
     private MovieService movieService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Movie> getAll() {
+    public List<Movie> getAll(@RequestParam(value = "rating", required = false) String ratingOrder,
+                              @RequestParam(value = "price", required = false) String priceOrder) {
         log.info("Get all movies.");
-        return movieService.getAll();
+        RequestParameters requestParameters = getOrderRequestParameters(ratingOrder, priceOrder);
+
+        return movieService.getAll(requestParameters);
     }
+
+    private RequestParameters getOrderRequestParameters(String ratingOrder, String priceOrder) {
+        RequestParameters requestParameters = new RequestParameters();
+
+        if (ratingOrder != null) {
+            if (SortDirection.valueOf(ratingOrder) != null) {
+                requestParameters.setSortColumn("rating");
+                requestParameters.setSortDirection(ratingOrder);
+            } else {
+                log.warn("Wrong order parameters : {}", ratingOrder);
+            }
+        } else if (priceOrder != null) {
+            if (SortDirection.valueOf(ratingOrder) != null) {
+                requestParameters.setSortColumn("price");
+                requestParameters.setSortDirection(priceOrder);
+            } else {
+                log.warn("Wrong order parameters : {}", priceOrder);
+            }
+        }
+        return requestParameters;
+    }
+
     @RequestMapping(path = "/random", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getRandom() {
         log.info("Get random movies.");
@@ -32,9 +60,12 @@ public class MovieController {
     }
 
     @RequestMapping(path = "/genre", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Movie> getMovieByGenre(@RequestParam("id") int id) {
+    public List<Movie> getMovieByGenre(@RequestParam("id") int id,
+                                       @RequestParam(value = "rating", required = false) String ratingOrder,
+                                       @RequestParam(value = "price", required = false) String priceOrder) {
         log.info("Get movies by genre {}", id);
-        return movieService.getByGenre(id);
+        RequestParameters requestParameters = getOrderRequestParameters(ratingOrder, priceOrder);
+        return movieService.getByGenre(id, requestParameters);
     }
 
     @Autowired

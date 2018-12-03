@@ -2,6 +2,7 @@ package com.movieland.dao.jdbc;
 
 import com.movieland.dao.MovieDao;
 import com.movieland.dao.jdbc.mapper.MovieRowMapper;
+import com.movieland.dao.util.QueryBuilder;
 import com.movieland.entity.Movie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +28,12 @@ public class JdbcMovieDao implements MovieDao {
     private int randomCount;
 
     @Override
-    public List<Movie> getAll() {
+    public List<Movie> getAll(RequestParameters requestParameters) {
         log.info("Get all movies request.");
-        return jdbcTemplate.query(getMovieAllSQL, MOVIE_ROW_MAPPER);
+        // create sqlQuery based on parameters
+        String sqlQuery = QueryBuilder.getQueryWithParameters(getMovieAllSQL, requestParameters);
+        // call DB with new query
+        return jdbcTemplate.query(sqlQuery, MOVIE_ROW_MAPPER);
     }
 
     @Override
@@ -40,10 +44,12 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     @Override
-    public List<Movie> getByGenre(int id) {
-        log.info("Get movie by genre {}",id);
-
-        return jdbcTemplate.query(getMovieByGenreSQL, MOVIE_ROW_MAPPER, id);
+    public List<Movie> getByGenre(int id, RequestParameters requestParameters) {
+        log.info("Get movie by genre {}", id);
+        // create sqlQuery based on parameters
+        String sqlQuery = QueryBuilder.getQueryWithParameters(getMovieByGenreSQL, requestParameters);
+        // call DB with new query
+        return jdbcTemplate.query(sqlQuery, MOVIE_ROW_MAPPER, id);
     }
 
     @Autowired
@@ -57,9 +63,13 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     @Autowired
-    public void setGetMovieRandomSQL(String getMovieRandomSQL) { this.getMovieRandomSQL = getMovieRandomSQL; }
+    public void setGetMovieRandomSQL(String getMovieRandomSQL) {
+        this.getMovieRandomSQL = getMovieRandomSQL;
+    }
 
     @Autowired
-    public void setGetMovieByGenreSQL(String getMovieByGenreSQL) { this.getMovieByGenreSQL = getMovieByGenreSQL; }
+    public void setGetMovieByGenreSQL(String getMovieByGenreSQL) {
+        this.getMovieByGenreSQL = getMovieByGenreSQL;
+    }
 
 }
