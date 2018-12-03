@@ -20,7 +20,6 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Autowired
-    @Qualifier("cachedGenreDao")
     public void setGenreDao(GenreDao genreDao) {
         this.genreDao = genreDao;
     }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Primary
 public class CachedGenreDao implements GenreDao {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
