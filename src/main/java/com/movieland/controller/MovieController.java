@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/movie")
@@ -30,27 +29,6 @@ public class MovieController {
         RequestParameters requestParameters = getOrderRequestParameters(ratingOrder, priceOrder);
 
         return movieService.getAll(requestParameters);
-    }
-
-    private RequestParameters getOrderRequestParameters(String ratingOrder, String priceOrder) {
-        RequestParameters requestParameters = new RequestParameters();
-
-        if (ratingOrder != null) {
-            if (SortDirection.valueOf(ratingOrder) != null) {
-                requestParameters.setSortColumn("rating");
-                requestParameters.setSortDirection(ratingOrder);
-            } else {
-                log.warn("Wrong order parameters : {}", ratingOrder);
-            }
-        } else if (priceOrder != null) {
-            if (SortDirection.valueOf(ratingOrder) != null) {
-                requestParameters.setSortColumn("price");
-                requestParameters.setSortDirection(priceOrder);
-            } else {
-                log.warn("Wrong order parameters : {}", priceOrder);
-            }
-        }
-        return requestParameters;
     }
 
     @RequestMapping(path = "/random", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -72,4 +50,27 @@ public class MovieController {
     public void setMovieService(MovieService movieService) {
         this.movieService = movieService;
     }
+
+    private RequestParameters getOrderRequestParameters(String ratingOrder, String priceOrder) {
+        RequestParameters requestParameters = new RequestParameters();
+
+        if (ratingOrder != null) {
+            if (SortDirection.contains(ratingOrder)) {
+                requestParameters.setSortColumn("rating");
+                requestParameters.setSortDirection(ratingOrder);
+            } else {
+                log.warn("Wrong order parameters : {} ", ratingOrder);
+            }
+        } else if (priceOrder != null) {
+            if (SortDirection.contains(priceOrder)) {
+                requestParameters.setSortColumn("price");
+                requestParameters.setSortDirection(priceOrder);
+            } else {
+                log.warn("Wrong order parameters : {} ", priceOrder);
+            }
+        }
+        return requestParameters;
+    }
+
+
 }

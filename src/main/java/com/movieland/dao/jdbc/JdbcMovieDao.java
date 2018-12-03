@@ -30,10 +30,7 @@ public class JdbcMovieDao implements MovieDao {
     @Override
     public List<Movie> getAll(RequestParameters requestParameters) {
         log.info("Get all movies request.");
-        // create sqlQuery based on parameters
-        String sqlQuery = QueryBuilder.getQueryWithParameters(getMovieAllSQL, requestParameters);
-        // call DB with new query
-        return jdbcTemplate.query(sqlQuery, MOVIE_ROW_MAPPER);
+        return jdbcTemplate.query(QueryBuilder.getQueryWithParameters(getMovieAllSQL, requestParameters), MOVIE_ROW_MAPPER);
     }
 
     @Override
@@ -46,10 +43,7 @@ public class JdbcMovieDao implements MovieDao {
     @Override
     public List<Movie> getByGenre(int id, RequestParameters requestParameters) {
         log.info("Get movie by genre {}", id);
-        // create sqlQuery based on parameters
-        String sqlQuery = QueryBuilder.getQueryWithParameters(getMovieByGenreSQL, requestParameters);
-        // call DB with new query
-        return jdbcTemplate.query(sqlQuery, MOVIE_ROW_MAPPER, id);
+        return jdbcTemplate.query(QueryBuilder.getQueryWithParameters(getMovieByGenreSQL, requestParameters), MOVIE_ROW_MAPPER, id);
     }
 
     @Autowired
