@@ -35,18 +35,10 @@ public class CachedGenreDaoTest {
 
     @Test
     public void getAllGenreTest() throws Exception {
-        Genre firstGenre = new Genre();
-        Genre secondGenre = new Genre();
+        Genre firstGenre = new Genre(1, "боевик");
+        Genre secondGenre = new Genre(2, "комедия");
         List<Genre> genres;
         LocalDateTime currentTime  = LocalDateTime.now();
-
-        //cachedGenreDao.setGenreDao(genreDao);
-        //
-        firstGenre.setId(1);
-        firstGenre.setName("боевик");
-        //
-        secondGenre.setId(2);
-        secondGenre.setName("комедия");
 
         when(genreDao.getAll()).thenReturn(Arrays.asList(firstGenre, secondGenre));
         cachedGenreDao.refreshCash();
