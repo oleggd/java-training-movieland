@@ -21,7 +21,7 @@ public class MovieController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private MovieService movieService;
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getAll(@RequestParam(value = "rating", required = false) SortDirection ratingOrder,
                               @RequestParam(value = "price", required = false) SortDirection priceOrder) {
         log.info("Get all movies.");
@@ -30,13 +30,13 @@ public class MovieController {
         return movieService.getAll(requestParameters);
     }
 
-    @RequestMapping(path = "/random", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "/random", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getRandom() {
         log.info("Get random movies.");
         return movieService.getRandom();
     }
 
-    @RequestMapping(path = "/genre", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "/genre", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getMovieByGenre(@RequestParam("id") int id,
                                        @RequestParam(value = "rating", required = false) SortDirection ratingOrder,
                                        @RequestParam(value = "price", required = false) SortDirection priceOrder) {

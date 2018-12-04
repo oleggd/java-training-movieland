@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class JdbcGenreDao implements GenreDao {
 
-    private final static GenreRowMapper GENRE_ROW_MAPPER = new GenreRowMapper();
+    private static final GenreRowMapper GENRE_ROW_MAPPER = new GenreRowMapper();
     private final Logger log = LoggerFactory.getLogger(getClass());
     private JdbcTemplate jdbcTemplate;
     private String getGenreAllSQL;

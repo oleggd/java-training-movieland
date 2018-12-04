@@ -67,12 +67,14 @@ public class MovieControllerTest {
         secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
-        requestParameters.setSortField("rating");
-        requestParameters.setSortDirection(SortDirection.ASC);
+        //requestParameters.setSortField("rating");
+        //requestParameters.setSortDirection(SortDirection.ASC);
+        requestParameters.setSortField(null);
+        requestParameters.setSortDirection(null);
 
         when(movieService.getAll(requestParameters)).thenReturn(Arrays.asList(firstMovie, secondMovie));
 
-        mockMvc.perform(get("/movie?rating=asc"))
+        mockMvc.perform(get("/movie"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
