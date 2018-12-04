@@ -11,4 +11,4 @@ script:
   # other script steps might be done before running the actual analysis
   #- sonar-scanner
   #- mvn -q sonar:sonar
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=oleggd_java-training-movieland -Dsonar.organization=oleggd-github -Dsonar.host.url=https://sonarcloud.io 
