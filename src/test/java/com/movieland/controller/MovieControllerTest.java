@@ -1,6 +1,7 @@
 package com.movieland.controller;
 
 import com.movieland.dao.jdbc.RequestParameters;
+import com.movieland.dao.util.SortDirection;
 import com.movieland.entity.Movie;
 import com.movieland.service.impl.MovieServiceImpl;
 import org.junit.Before;
@@ -8,13 +9,10 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 //import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -69,8 +67,8 @@ public class MovieControllerTest {
         secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
-        requestParameters.setSortColumn("rating");
-        requestParameters.setSortDirection("asc");
+        requestParameters.setSortField("rating");
+        requestParameters.setSortDirection(SortDirection.ASC);
 
         when(movieService.getAll(requestParameters)).thenReturn(Arrays.asList(firstMovie, secondMovie));
 
@@ -172,8 +170,8 @@ public class MovieControllerTest {
         secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
-        requestParameters.setSortColumn("rating");
-        requestParameters.setSortDirection("asc");
+        requestParameters.setSortField("rating");
+        requestParameters.setSortDirection(SortDirection.ASC);
 
         when(movieService.getByGenre(1, requestParameters)).thenReturn(Arrays.asList(firstMovie, secondMovie));
 

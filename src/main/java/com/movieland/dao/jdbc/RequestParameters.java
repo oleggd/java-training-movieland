@@ -1,23 +1,25 @@
 package com.movieland.dao.jdbc;
 
+import com.movieland.dao.util.SortDirection;
+
 public class RequestParameters {
 
-    private String sortColumn;
-    private String sortDirection;
+    private String sortField;
+    private SortDirection sortDirection;
 
-    public String getSortColumn() {
-        return sortColumn;
+    public String getSortField() {
+        return sortField;
     }
 
-    public String getSortDirection() {
+    public SortDirection getSortDirection() {
         return sortDirection;
     }
 
-    public void setSortColumn(String sortColumn) {
-        this.sortColumn = sortColumn;
+    public void setSortField(String sortField) {
+        this.sortField = sortField;
     }
 
-    public void setSortDirection(String sortDirection) {
+    public void setSortDirection(SortDirection sortDirection) {
         this.sortDirection = sortDirection;
     }
 }
