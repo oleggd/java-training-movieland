@@ -1,5 +1,7 @@
 package com.movieland.controller;
 
+import com.movieland.dao.jdbc.RequestParameters;
+import com.movieland.dao.util.SortDirection;
 import com.movieland.entity.Movie;
 import com.movieland.service.impl.MovieServiceImpl;
 import org.junit.Before;
@@ -7,13 +9,10 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 //import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -46,7 +45,7 @@ public class MovieControllerTest {
         Movie firstMovie = new Movie();
         Movie secondMovie = new Movie();
         LocalDateTime currentTime = LocalDateTime.now();
-        Timestamp currentTimestamp = Timestamp.valueOf(currentTime);
+        RequestParameters requestParameters = new RequestParameters();
         //
         firstMovie.setId(25);
         firstMovie.setName("Первый фильм");
@@ -68,9 +67,12 @@ public class MovieControllerTest {
         secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
-        when(movieService.getAll()).thenReturn(Arrays.asList(firstMovie, secondMovie));
+        requestParameters.setSortField("rating");
+        requestParameters.setSortDirection(SortDirection.ASC);
 
-        mockMvc.perform(get("/movie"))
+        when(movieService.getAll(requestParameters)).thenReturn(Arrays.asList(firstMovie, secondMovie));
+
+        mockMvc.perform(get("/movie/?rating=asc"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -88,8 +90,7 @@ public class MovieControllerTest {
                 .andExpect(jsonPath("$[1].rating", is(0.1)))
                 .andExpect(jsonPath("$[1].price", is(25.3)))
                 .andExpect(jsonPath("$[1].poster", is("poster2.jpg")));
-
-        verify(movieService, times(1)).getAll();
+        verify(movieService, times(1)).getAll(requestParameters);
         verifyNoMoreInteractions(movieService);
     }
     @Test
@@ -146,6 +147,7 @@ public class MovieControllerTest {
         Movie firstMovie = new Movie();
         Movie secondMovie = new Movie();
         LocalDateTime currentTime = LocalDateTime.now();
+        RequestParameters requestParameters = new RequestParameters();
         //
         firstMovie.setId(25);
         firstMovie.setName("Первый фильм");
@@ -167,9 +169,12 @@ public class MovieControllerTest {
         secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
-        when(movieService.getByGenre(1)).thenReturn(Arrays.asList(firstMovie, secondMovie));
+        requestParameters.setSortField("rating");
+        requestParameters.setSortDirection(SortDirection.ASC);
 
-        mockMvc.perform(get("/movie/genre/?id=1"))
+        when(movieService.getByGenre(1, requestParameters)).thenReturn(Arrays.asList(firstMovie, secondMovie));
+
+        mockMvc.perform(get("/movie/genre/?id=1&rating=asc"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -188,7 +193,7 @@ public class MovieControllerTest {
                 .andExpect(jsonPath("$[1].price", is(25.3)))
                 .andExpect(jsonPath("$[1].poster", is("poster2.jpg")));
 
-        verify(movieService, times(1)).getByGenre(1);
+        verify(movieService, times(1)).getByGenre(1, requestParameters);
         verifyNoMoreInteractions(movieService);
     }
 

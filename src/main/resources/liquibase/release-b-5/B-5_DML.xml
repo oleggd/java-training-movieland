@@ -1,0 +1,27 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+        
+    <changeSet dbms="postgresql" id="install.initial.B5-DML" author="install.user" runOnChange="true">
+        <comment>B-5 DML part</comment>
+        <!-- drop indexes -->
+        <sql endDelimiter="\n/" splitStatements="false">
+            TRUNCATE TABLE users;
+            TRUNCATE TABLE permissions;
+            TRUNCATE TABLE movies_genre;
+            TRUNCATE TABLE posters CASCADE;
+            TRUNCATE TABLE reviews;
+            TRUNCATE TABLE genres CASCADE;
+            TRUNCATE TABLE movies CASCADE; 
+        </sql>
+        <!-- tables -->
+        <comment> All data</comment> 
+        <sqlFile path="scripts/load_users.sql"          endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+	<sqlFile path="scripts/load_permissions.sql"    endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+	<sqlFile path="scripts/load_genres.sql"    endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+	<sqlFile path="scripts/load_movies.sql"    endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="scripts/load_data.sql"          endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <!-- Service section  -->
+    </changeSet>
+</databaseChangeLog>

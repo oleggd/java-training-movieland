@@ -1,0 +1,47 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+        
+    <changeSet dbms="postgresql" id="install.initial.B5-DDL" author="install.user" runOnChange="true">
+        <comment>B-5 DDL part</comment>
+        <!-- functions -->
+        <!-- sequences -->
+        <comment> create sequences </comment>
+        <sql endDelimiter="\n/" splitStatements="false">
+            DROP SEQUENCE IF EXISTS user_id_seq CASCADE;
+        </sql>
+        <sqlFile path="sequences/user_id_seq.sql" endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <!-- functions -->
+        <!-- drop tables -->
+        <comment> create tables </comment>
+        <!--sql endDelimiter="\n/" splitStatements="false">
+        </sql-->
+        <!-- drop indexes -->
+        <!--sql endDelimiter="\n/" splitStatements="false">
+        </sql-->
+        <!-- tables -->
+        <comment> Tables: all</comment> 
+        <sql endDelimiter="\n/" splitStatements="false">
+            DROP TABLE IF EXISTS users;
+            DROP TABLE IF EXISTS reviews;
+            DROP TABLE IF EXISTS posters;
+            DROP TABLE IF EXISTS movies_genre;
+            DROP TABLE IF EXISTS movies;
+            DROP TABLE IF EXISTS genres;
+            DROP TABLE IF EXISTS permissions;
+        </sql>
+        <sqlFile path="tables/users.sql"          endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="tables/permissions.sql"    endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="tables/genres.sql"         endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="tables/movies.sql"         endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="tables/movies_genre.sql"   endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="tables/posters.sql"        endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="tables/reviews.sql"        endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <!-- Service section  -->
+        <!-- Add additional grants and recompile schemas -->
+        <comment> Add additional grants and recompile schemas </comment>
+        <!--sql endDelimiter="\n/" splitStatements="false"-->
+        <!-- Recompile as sql  -->
+    </changeSet>
+</databaseChangeLog>
