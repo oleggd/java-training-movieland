@@ -12,3 +12,6 @@ dbcp :
     initialSize : 1
     maxTotal    : 2
     validationQuery : Select 1 
+
+liquibase: 
+  change-log : classpath:db.changelog.xml

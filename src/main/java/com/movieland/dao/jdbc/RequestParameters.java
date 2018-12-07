@@ -2,6 +2,8 @@ package com.movieland.dao.jdbc;
 
 import com.movieland.dao.util.SortDirection;
 
+import java.util.Objects;
+
 public class RequestParameters {
 
     private String sortField;
@@ -21,5 +23,20 @@ public class RequestParameters {
 
     public void setSortDirection(SortDirection sortDirection) {
         this.sortDirection = sortDirection;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RequestParameters that = (RequestParameters) o;
+        return Objects.equals(sortField, that.sortField) &&
+                sortDirection == that.sortDirection;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(sortField, sortDirection);
     }
 }

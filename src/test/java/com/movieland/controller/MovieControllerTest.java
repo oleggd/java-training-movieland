@@ -67,14 +67,12 @@ public class MovieControllerTest {
         secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
-        //requestParameters.setSortField("rating");
-        //requestParameters.setSortDirection(SortDirection.ASC);
-        requestParameters.setSortField(null);
-        requestParameters.setSortDirection(null);
+        requestParameters.setSortField("rating");
+        requestParameters.setSortDirection(SortDirection.ASC);
 
-        //when(movieService.getAll(requestParameters)).thenReturn(Arrays.asList(firstMovie, secondMovie));
+        when(movieService.getAll(requestParameters)).thenReturn(Arrays.asList(firstMovie, secondMovie));
 
-        /*mockMvc.perform(get("/movie"))
+        mockMvc.perform(get("/movie/?rating=asc"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -92,9 +90,8 @@ public class MovieControllerTest {
                 .andExpect(jsonPath("$[1].rating", is(0.1)))
                 .andExpect(jsonPath("$[1].price", is(25.3)))
                 .andExpect(jsonPath("$[1].poster", is("poster2.jpg")));
-*/
-        //verify(movieService, times(1)).getAll(requestParameters);
-        //verifyNoMoreInteractions(movieService);
+        verify(movieService, times(1)).getAll(requestParameters);
+        verifyNoMoreInteractions(movieService);
     }
     @Test
     public void getRandomMovieTest() throws Exception {
@@ -177,7 +174,7 @@ public class MovieControllerTest {
 
         when(movieService.getByGenre(1, requestParameters)).thenReturn(Arrays.asList(firstMovie, secondMovie));
 
-        /*mockMvc.perform(get("/movie/genre/?id=1"))
+        mockMvc.perform(get("/movie/genre/?id=1&rating=asc"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -195,9 +192,9 @@ public class MovieControllerTest {
                 .andExpect(jsonPath("$[1].rating", is(0.1)))
                 .andExpect(jsonPath("$[1].price", is(25.3)))
                 .andExpect(jsonPath("$[1].poster", is("poster2.jpg")));
-*/
-        //verify(movieService, times(1)).getByGenre(1, requestParameters);
-        //verifyNoMoreInteractions(movieService);
+
+        verify(movieService, times(1)).getByGenre(1, requestParameters);
+        verifyNoMoreInteractions(movieService);
     }
 
 }

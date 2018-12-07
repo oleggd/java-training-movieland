@@ -1,0 +1,18 @@
+<!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <!--Views-->
+    <!--include file="soft/views-master.xml"/-->
+    <!--Packages-->
+    <!--include file="soft/pkg-master.xml"/-->
+    <!--Triggers-->
+    <!--include file="soft/trigger-master.xml"/-->
+    
+    <!-- Service section -->
+    <!--changeSet dbms="psql" id="service.section" author="install.user" runAlways="true">
+      <comment>Service Section part</comment>
+      <sqlFile path="soft/script/grants_schema_roles.sql"  endDelimiter="\n/" splitStatements="false"/>
+      <sqlFile path="soft/script/recompile_schema.sql"     endDelimiter="\n/" splitStatements="false"/>
+    </changeSet-->
+</databaseChangeLog>
