@@ -2,12 +2,10 @@ package com.movieland.dao.jdbc;
 
 import com.movieland.dao.GenreDao;
 import com.movieland.dao.jdbc.mapper.GenreRowMapper;
-import com.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.movieland.entity.Genre;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

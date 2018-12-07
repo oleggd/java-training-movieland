@@ -1,7 +1,5 @@
 package com.movieland.entity;
 
-import java.time.LocalDateTime;
-
 public class Genre {
 
     private int id;
