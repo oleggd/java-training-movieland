@@ -5,7 +5,7 @@ import com.movieland.dao.jdbc.RequestParameters;
 public class QueryBuilder {
 
     public static String getQueryWithParameters (String querySQL, RequestParameters requestParameters) {
-        if (requestParameters.getSortField() != null && requestParameters.getSortField() != null) {
+        if (requestParameters.getSortField() != null && requestParameters.getSortDirection() != null) {
             // return query with orderBy
             return querySQL + " ORDER BY " + requestParameters.getSortField() + " " + requestParameters.getSortDirection();
         }
