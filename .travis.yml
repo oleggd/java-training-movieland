@@ -5,11 +5,13 @@ addons:
   sonarcloud:
     organization: "oleggd-github" # the key of the org you chose at step #3
     token:
-      secure: 15be3078c4d64bcbd45df472bd62690de5201a8d
+      secure:
+      #15be3078c4d64bcbd45df472bd62690de5201a8d
 #********* # encrypted value of your token
 script:
   # other script steps might be done before running the actual analysis
   #- sonar-scanner
   #- mvn -q sonar:sonar
   #- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=oleggd_java-training-movieland -Dsonar.organization=oleggd-github -Dsonar.host.url=https://sonarcloud.io
-  - mvn sonar:sonar -Dsonar.projectKey=oleggd_java-training-movieland -Dsonar.organization=oleggd-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=15be3078c4d64bcbd45df472bd62690de5201a8d
+  - mvn sonar:sonar -Dsonar.projectKey=oleggd_java-training-movieland -Dsonar.organization=oleggd-github -Dsonar.host.url=https://sonarcloud.io
+  #-Dsonar.login=15be3078c4d64bcbd45df472bd62690de5201a8d
