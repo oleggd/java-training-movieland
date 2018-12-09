@@ -28,7 +28,6 @@ public class MovieRowMapperTest {
         when(resultSet.getString("name")).thenReturn("Первый фильм");
         when(resultSet.getString("name_orig")).thenReturn("First movie");
         when(resultSet.getInt("year")).thenReturn(2018);
-        when(resultSet.getString("country")).thenReturn("USA");
         when(resultSet.getDouble("rating")).thenReturn(50.1);
         when(resultSet.getDouble("price")).thenReturn(125.3);
         when(resultSet.getTimestamp("creation_date")).thenReturn(currentTimestamp);
@@ -39,7 +38,6 @@ public class MovieRowMapperTest {
         assertEquals("Первый фильм", firstMovie.getName());
         assertEquals("First movie", firstMovie.getNameOriginal());
         assertEquals(2018, firstMovie.getYear());
-        assertEquals("USA", firstMovie.getCountry());
         assertEquals(50.1, firstMovie.getRating(),0.01);
         assertEquals(125.3, firstMovie.getPrice(),0.01);
         assertEquals("poster.jpg", firstMovie.getPoster());
