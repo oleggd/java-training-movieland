@@ -20,13 +20,13 @@ public class GenreRowMapperTest {
     @Test
     public void mapRow() throws SQLException {
 
-        GenreRowMapper movieRowMapper = new GenreRowMapper();
+        GenreRowMapper genreRowMapper = new GenreRowMapper();
         ResultSet resultSet           = mock(ResultSet.class);
 
         when(resultSet.getInt("id")).thenReturn(1);
         when(resultSet.getString("name")).thenReturn("боевик");
 
-        Genre firstGenre = movieRowMapper.mapRow(resultSet,1);
+        Genre firstGenre = genreRowMapper.mapRow(resultSet,1);
         assertEquals(1, firstGenre.getId());
         assertEquals("боевик", firstGenre.getName());
     }

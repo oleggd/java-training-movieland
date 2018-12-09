@@ -51,20 +51,16 @@ public class MovieControllerTest {
         firstMovie.setName("Первый фильм");
         firstMovie.setNameOriginal("First movie");
         firstMovie.setYear(2018);
-        firstMovie.setCountry("USA");
         firstMovie.setRating(50.1);
         firstMovie.setPrice(125.3);
-        firstMovie.setCreationDate(currentTime);
         firstMovie.setPoster("poster1.jpg");
         //
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
         secondMovie.setNameOriginal("Second movie");
         secondMovie.setYear(2000);
-        secondMovie.setCountry("JPN");
         secondMovie.setRating(0.1);
         secondMovie.setPrice(25.3);
-        secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
         requestParameters.setSortField("rating");
@@ -103,20 +99,16 @@ public class MovieControllerTest {
         firstMovie.setName("Первый фильм");
         firstMovie.setNameOriginal("First movie");
         firstMovie.setYear(2018);
-        firstMovie.setCountry("USA");
         firstMovie.setRating(50.1);
         firstMovie.setPrice(125.3);
-        firstMovie.setCreationDate(currentTime);
         firstMovie.setPoster("poster1.jpg");
         //
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
         secondMovie.setNameOriginal("Second movie");
         secondMovie.setYear(2000);
-        secondMovie.setCountry("JPN");
         secondMovie.setRating(0.1);
         secondMovie.setPrice(25.3);
-        secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
         when(movieService.getRandom()).thenReturn(Arrays.asList(firstMovie, secondMovie));
@@ -153,20 +145,16 @@ public class MovieControllerTest {
         firstMovie.setName("Первый фильм");
         firstMovie.setNameOriginal("First movie");
         firstMovie.setYear(2018);
-        firstMovie.setCountry("USA");
         firstMovie.setRating(50.1);
         firstMovie.setPrice(125.3);
-        firstMovie.setCreationDate(currentTime);
         firstMovie.setPoster("poster1.jpg");
         //
         secondMovie.setId(26);
         secondMovie.setName("Второй фильм");
         secondMovie.setNameOriginal("Second movie");
         secondMovie.setYear(2000);
-        secondMovie.setCountry("JPN");
         secondMovie.setRating(0.1);
         secondMovie.setPrice(25.3);
-        secondMovie.setCreationDate(currentTime);
         secondMovie.setPoster("poster2.jpg");
 
         requestParameters.setSortField("rating");

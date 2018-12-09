@@ -1,6 +1,7 @@
 package com.movieland.dao.jdbc;
 
 import com.movieland.dao.MovieDao;
+import com.movieland.dao.jdbc.mapper.MovieAllRowMapper;
 import com.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.movieland.dao.util.QueryBuilder;
 import com.movieland.entity.Movie;
@@ -16,6 +17,7 @@ import java.util.List;
 @Repository
 public class JdbcMovieDao implements MovieDao {
 
+    private static final MovieAllRowMapper MOVIE_ALL_ROW_MAPPER = new MovieAllRowMapper();
     private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -23,6 +25,7 @@ public class JdbcMovieDao implements MovieDao {
     private String getMovieAllSQL;
     private String getMovieRandomSQL;
     private String getMovieByGenreSQL;
+    private String getMovieByIdSQL;
 
     @Value("${movie.randomCount:5}")
     private int randomCount;
@@ -30,20 +33,26 @@ public class JdbcMovieDao implements MovieDao {
     @Override
     public List<Movie> getAll(RequestParameters requestParameters) {
         log.info("Get all movies request.");
-        return jdbcTemplate.query(QueryBuilder.getQueryWithParameters(getMovieAllSQL, requestParameters), MOVIE_ROW_MAPPER);
+        return jdbcTemplate.query(QueryBuilder.getQueryWithParameters(getMovieAllSQL, requestParameters), MOVIE_ALL_ROW_MAPPER);
     }
 
     @Override
     public List<Movie> getRandom() {
         log.info("Get random movie.");
         log.debug("Get random movie request : {}", randomCount);
-        return jdbcTemplate.query(getMovieRandomSQL, MOVIE_ROW_MAPPER, randomCount);
+        return jdbcTemplate.query(getMovieRandomSQL, MOVIE_ALL_ROW_MAPPER, randomCount);
     }
 
     @Override
     public List<Movie> getByGenre(int id, RequestParameters requestParameters) {
         log.info("Get movie by genre {}", id);
-        return jdbcTemplate.query(QueryBuilder.getQueryWithParameters(getMovieByGenreSQL, requestParameters), MOVIE_ROW_MAPPER, id);
+        return jdbcTemplate.query(QueryBuilder.getQueryWithParameters(getMovieByGenreSQL, requestParameters), MOVIE_ALL_ROW_MAPPER, id);
+    }
+
+    @Override
+    public Movie getById(int id) {
+        log.info("Get movie by id {}", id);
+        return jdbcTemplate.queryForObject(getMovieByIdSQL, MOVIE_ROW_MAPPER, id);
     }
 
     @Autowired
@@ -65,5 +74,8 @@ public class JdbcMovieDao implements MovieDao {
     public void setGetMovieByGenreSQL(String getMovieByGenreSQL) {
         this.getMovieByGenreSQL = getMovieByGenreSQL;
     }
+
+    @Autowired
+    public void setGetMovieByIdSQL(String getMovieByIdSQL) { this.getMovieByIdSQL = getMovieByIdSQL; }
 
 }

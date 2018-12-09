@@ -1,0 +1,1 @@
+INSERT INTO movie_country SELECT m.id, c.id FROM movies m LEFT join country c ON  m.country LIKE '%'||c.name||'%' WHERE c.id IS NOT NULL ORDER BY 1,2;

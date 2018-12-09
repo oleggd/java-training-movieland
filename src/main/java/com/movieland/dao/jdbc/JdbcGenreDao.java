@@ -18,11 +18,18 @@ public class JdbcGenreDao implements GenreDao {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private JdbcTemplate jdbcTemplate;
     private String getGenreAllSQL;
+    private String getGenreByMovieIdSQL;
 
     @Override
     public List<Genre> getAll() {
         log.info("Get all genre request.");
         return jdbcTemplate.query(getGenreAllSQL, GENRE_ROW_MAPPER);
+    }
+
+    @Override
+    public List<Genre> getByMovieId(int id) {
+        log.info("Get all genre by movie id {}", id);
+        return jdbcTemplate.query(getGenreByMovieIdSQL, GENRE_ROW_MAPPER, id);
     }
 
     @Autowired
@@ -34,5 +41,8 @@ public class JdbcGenreDao implements GenreDao {
     public void setGetGenreAllSQL(String getGenreAllSQL) {
         this.getGenreAllSQL = getGenreAllSQL;
     }
+
+    @Autowired
+    public void setGetGenreByMovieIDSQL(String getGenreByMovieIdSQL) { this.getGenreByMovieIdSQL = getGenreByMovieIdSQL; }
 
 }

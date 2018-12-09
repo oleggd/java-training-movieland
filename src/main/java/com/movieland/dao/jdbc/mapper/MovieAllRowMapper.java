@@ -5,9 +5,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
-public class MovieRowMapper implements RowMapper<Movie> {
+public class MovieAllRowMapper implements RowMapper<Movie> {
     public Movie mapRow (ResultSet resultSet, int rowId) throws SQLException {
         Movie movie = new Movie();
 
@@ -17,7 +16,6 @@ public class MovieRowMapper implements RowMapper<Movie> {
         movie.setYear(resultSet.getInt("year"));
         movie.setRating(resultSet.getDouble("rating"));
         movie.setPrice(resultSet.getDouble("price"));
-        movie.setDescription(resultSet.getString("description"));
         movie.setPoster(resultSet.getString("url"));
         return movie;
     }

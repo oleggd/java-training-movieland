@@ -1,0 +1,42 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+        
+    <changeSet dbms="postgresql" id="install.initial.B6-DDL" author="install.user" runOnChange="true">
+        <comment>B-6 DDL part</comment>
+        <!-- functions -->
+        <!-- sequences -->
+        <!-- functions -->
+        <!-- drop tables -->
+        <!--sql endDelimiter="\n/" splitStatements="false">
+        </sql-->
+        <!-- drop indexes -->
+        <!--sql endDelimiter="\n/" splitStatements="false">
+        </sql-->
+        <!-- tables -->
+        <sql endDelimiter="\n/" splitStatements="false">
+           ALTER TABLE users DROP COLUMN login;
+           ALTER TABLE users RENAME COLUMN name TO nick_name;
+           --
+           ALTER TABLE reviews ADD COLUMN user_id INTEGER;
+           UPDATE reviews r
+              SET user_id = (SELECT u.id FROM users u WHERE u.nick_name = r.author)
+            WHERE EXISTS (SELECT 'X' FROM users u WHERE u.nick_name = r.author);
+           ALTER TABLE reviews DROP COLUMN author; 
+           --
+        </sql>
+        <comment> create tables </comment>
+        <sql endDelimiter="\n/" splitStatements="false">
+            DROP TABLE IF EXISTS country;
+            DROP TABLE IF EXISTS movie_country;
+        </sql>
+        <sqlFile path="tables/country.sql"          endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="tables/movie_country.sql"    endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <!-- Service section  -->
+        <!-- Add additional grants and recompile schemas -->
+        <comment> Add additional grants and recompile schemas </comment>
+        <!--sql endDelimiter="\n/" splitStatements="false"-->
+        <!-- Recompile as sql  -->
+    </changeSet>
+</databaseChangeLog>

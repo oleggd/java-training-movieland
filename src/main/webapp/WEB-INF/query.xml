@@ -10,13 +10,34 @@
     <bean id="getMovieRandomSQL" class="java.lang.String">
         <constructor-arg value="SELECT m.id, m.name, m.name_orig, m.year, m.country, m.rating, m.price, m.creation_date, p.url FROM movies m JOIN posters p ON m.id = p.movie_id ORDER BY RANDOM() LIMIT ?"/>
     </bean>
-
     <bean id="getMovieByGenreSQL" class="java.lang.String">
         <constructor-arg value="SELECT m.id, m.name, m.name_orig, m.year, m.country, m.rating, m.price, m.creation_date, p.url, g.name FROM movies m JOIN posters p ON m.id = p.movie_id JOIN movies_genre mg ON mg.movie_id = m.id JOIN genres g ON mg.genre_id = g.id WHERE g.id = ?"/>
+    </bean>
+    <bean id="getMovieByIdSQL" class="java.lang.String">
+        <constructor-arg value="SELECT m.id, m.name, m.name_orig, m.year, m.country, m.rating, m.price, m.description, m.creation_date, p.url FROM movies m JOIN posters p ON m.id = p.movie_id WHERE m.id = ?"/>
     </bean>
 
     <bean id="getGenreAllSQL" class="java.lang.String">
         <constructor-arg value="SELECT g.id, g.name, g.creation_date FROM genres g"/>
+    </bean>
+    <bean id="getGenreByMovieIdSQL" class="java.lang.String">
+        <constructor-arg value="SELECT g.id, g.name, g.creation_date FROM genres g JOIN movies_genre mg ON g.id = mg.genre_id WHERE mg.movie_id = ?"/>
+    </bean>
+
+
+    <bean id="getUserAllSQL" class="java.lang.String">
+        <constructor-arg value="SELECT u.id, u.nick_name FROM users u"/>
+    </bean>
+
+    <bean id="getCountryAllSQL" class="java.lang.String">
+        <constructor-arg value="SELECT c.id, c.name FROM country c"/>
+    </bean>
+    <bean id="getCountryByMovieIDSQL" class="java.lang.String">
+        <constructor-arg value="SELECT c.id, c.name FROM country c JOIN movie_country mc ON mc.country_id = c.id WHERE mc.movie_id = ?"/>
+    </bean>
+
+    <bean id="getReviewByMovieIDSQL" class="java.lang.String">
+        <constructor-arg value="SELECT r.id, r.description, r.user_id, u.nick_name FROM reviews r JOIN users u ON r.user_id = u.id WHERE r.movie_id = ?"/>
     </bean>
 
 </beans>
