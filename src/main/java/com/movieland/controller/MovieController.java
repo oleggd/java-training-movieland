@@ -1,7 +1,6 @@
 package com.movieland.controller;
 
 import com.movieland.controller.util.SortDirectionConverter;
-import com.movieland.dao.MovieAllDTO;
 import com.movieland.dao.jdbc.RequestParameters;
 import com.movieland.dao.util.SortDirection;
 import com.movieland.entity.Movie;
