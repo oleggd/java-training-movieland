@@ -28,7 +28,7 @@ public class CachedCountryDao implements CountryDao {
 
     @PostConstruct
     @Scheduled(initialDelayString = "${cache.initialDelay:5000}", fixedDelayString = "${cache.fixedDelayCountry:86400000}")
-    public void refreshCountryCash () {
+    public void refreshCountryCache () {
         log.info("Refresh cache for countries.");
         this.countries = countryDao.getAll();
     }

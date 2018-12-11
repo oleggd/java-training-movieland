@@ -11,6 +11,9 @@ cache:
   fixedDelay   : 14400000
   fixedDelayCountry: 86400000
 
+currency :
+  serviceUrl : "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"
+
 dbcp :
     initialSize : 1
     maxTotal    : 2

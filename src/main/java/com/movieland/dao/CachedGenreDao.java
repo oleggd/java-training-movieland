@@ -28,7 +28,7 @@ public class CachedGenreDao implements GenreDao {
 
     @PostConstruct
     @Scheduled(initialDelayString = "${cache.initialDelay:5000}", fixedDelayString = "${cache.fixedDelay:14400000}")
-    public void refreshCash () {
+    public void refreshCache () {
         log.info("Refresh cache for genre.");
         this.genres = genreDao.getAll();
     }
