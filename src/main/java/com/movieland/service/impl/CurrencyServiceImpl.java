@@ -34,10 +34,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     public Map<Currency, Double> getAll() {
 
         restTemplate = new RestTemplate();
-        CurrencyRates[] currencyRates = restTemplate.getForObject(serviceURL , CurrencyRates[].class);
-        System.out.println(currencyRates.toString());
+        CurrencyRates[] currencyExtRates = restTemplate.getForObject(serviceURL , CurrencyRates[].class);
         Map<Currency, Double> rates = new HashMap<>();
-        for (CurrencyRates currencyRate : currencyRates) {
+        for (CurrencyRates currencyRate : currencyExtRates) {
             if (Currency.contains(currencyRate.getCurrencyCode())) {
                 rates.put(Currency.fromValue(currencyRate.getCurrencyCode()),currencyRate.getRate());
             }

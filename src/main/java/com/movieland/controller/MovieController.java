@@ -49,7 +49,7 @@ public class MovieController {
 
     @GetMapping(params = "id", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Movie getMovieById(@RequestParam("id") int id, @RequestParam(value = "currency", required = false) Currency currency) {
-        log.info("Get movies by id {}, currency", id, currency);
+        log.info("Get movies by id {}, currency {}", id, currency);
         RequestParameters requestParameters =  new RequestParameters();
         requestParameters.setCurrency(currency);
         return movieService.getById(id, requestParameters);
