@@ -3,10 +3,7 @@ package com.movieland.service.impl;
 import com.movieland.dao.MovieDao;
 import com.movieland.dao.jdbc.RequestParameters;
 import com.movieland.entity.Movie;
-import com.movieland.service.CountryService;
-import com.movieland.service.GenreService;
-import com.movieland.service.MovieService;
-import com.movieland.service.ReviewService;
+import com.movieland.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +16,7 @@ public class MovieServiceImpl implements MovieService {
     private CountryService countryService;
     private GenreService genreService;
     private ReviewService reviewService;
+    private CurrencyService currencyService;
 
     @Override
     public List<Movie> getAll(RequestParameters requestParameters) {
@@ -34,7 +32,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie getById(int id) {
+    public Movie getById(int id, RequestParameters requestParameters) {
         Movie movie = movieDao.getById(id);
         //get genre
         genreService.enrichMovie(movie);
@@ -42,6 +40,10 @@ public class MovieServiceImpl implements MovieService {
         countryService.enrichMovie(movie);
         //get reviews
         reviewService.enrichMovie(movie);
+        // get rates
+        // set converted price
+        movie.setCurrency(requestParameters.getCurrency());
+        movie.setPrice(currencyService.getPriceByCurrency(requestParameters.getCurrency(), movie.getPrice()));
         return movie;
     }
 
@@ -59,5 +61,7 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     public void setReviewService(ReviewService reviewService) { this.reviewService = reviewService; }
 
+    @Autowired
+    public void setCurrencyService(CurrencyService currencyService) { this.currencyService = currencyService; }
 
 }

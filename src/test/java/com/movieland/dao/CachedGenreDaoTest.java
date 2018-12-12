@@ -41,7 +41,7 @@ public class CachedGenreDaoTest {
         LocalDateTime currentTime  = LocalDateTime.now();
 
         when(genreDao.getAll()).thenReturn(Arrays.asList(firstGenre, secondGenre));
-        cachedGenreDao.refreshCash();
+        cachedGenreDao.refreshCache();
         genres = cachedGenreDao.getAll();
         genres = cachedGenreDao.getAll();
         assertEquals(2,genres.size());
@@ -49,7 +49,7 @@ public class CachedGenreDaoTest {
         when(genreDao.getAll()).thenReturn(Arrays.asList(firstGenre, secondGenre,firstGenre, secondGenre));
         genres = cachedGenreDao.getAll();
         assertEquals(2,genres.size());
-        cachedGenreDao.refreshCash();
+        cachedGenreDao.refreshCache();
         genres = cachedGenreDao.getAll();
         assertEquals(4,genres.size());
 

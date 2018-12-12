@@ -39,7 +39,7 @@ public class CachedCountryDaoTest {
         LocalDateTime currentTime  = LocalDateTime.now();
 
         when(countryDao.getAll()).thenReturn(Arrays.asList(firstCountry, secondCountry));
-        cachedCountryDao.refreshCountryCash();
+        cachedCountryDao.refreshCountryCache();
         countries = cachedCountryDao.getAll();
         countries = cachedCountryDao.getAll();
         assertEquals(2,countries.size());
@@ -47,7 +47,7 @@ public class CachedCountryDaoTest {
         when(countryDao.getAll()).thenReturn(Arrays.asList(firstCountry, secondCountry,firstCountry, secondCountry));
         countries = cachedCountryDao.getAll();
         assertEquals(2,countries.size());
-        cachedCountryDao.refreshCountryCash();
+        cachedCountryDao.refreshCountryCache();
         countries = cachedCountryDao.getAll();
         assertEquals(4,countries.size());
 

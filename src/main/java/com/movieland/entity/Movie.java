@@ -10,6 +10,7 @@ public class Movie {
     private int year;
     private String description;
     private Double rating;
+    private Currency currency;
     private Double price;
     private String poster;
     private List<Country> countries;
@@ -69,6 +70,10 @@ public class Movie {
     public void setRating(Double rating) {
         this.rating = rating;
     }
+
+    public Currency getCurrency() { return currency; }
+
+    public void setCurrency(Currency currency) { this.currency = currency; }
 
     public Double getPrice() {
         return price;

@@ -1,8 +1,10 @@
 package com.movieland.controller;
 
+import com.movieland.controller.util.CurrencyConverter;
 import com.movieland.controller.util.SortDirectionConverter;
 import com.movieland.dao.jdbc.RequestParameters;
 import com.movieland.dao.util.SortDirection;
+import com.movieland.entity.Currency;
 import com.movieland.entity.Movie;
 import com.movieland.service.MovieService;
 import org.slf4j.Logger;
@@ -46,9 +48,11 @@ public class MovieController {
     }
 
     @GetMapping(params = "id", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Movie getMovieById(@RequestParam("id") int id) {
-        log.info("Get movies by id {}", id);
-        return movieService.getById(id);
+    public Movie getMovieById(@RequestParam("id") int id, @RequestParam(value = "currency", required = false) Currency currency) {
+        log.info("Get movies by id {}, currency {}", id, currency);
+        RequestParameters requestParameters =  new RequestParameters();
+        requestParameters.setCurrency(currency);
+        return movieService.getById(id, requestParameters);
     }
 
     @Autowired
@@ -80,5 +84,6 @@ public class MovieController {
     @InitBinder
     public void initBinder(final WebDataBinder webdataBinder) {
         webdataBinder.registerCustomEditor(SortDirection.class, new SortDirectionConverter());
+        webdataBinder.registerCustomEditor(Currency.class, new CurrencyConverter());
     }
 }
