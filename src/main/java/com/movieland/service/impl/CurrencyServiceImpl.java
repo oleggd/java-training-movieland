@@ -33,7 +33,6 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     public Map<Currency, Double> getAll() {
 
-        restTemplate = new RestTemplate();
         CurrencyRates[] currencyExtRates = restTemplate.getForObject(serviceURL , CurrencyRates[].class);
         Map<Currency, Double> rates = new HashMap<>();
         for (CurrencyRates currencyRate : currencyExtRates) {
