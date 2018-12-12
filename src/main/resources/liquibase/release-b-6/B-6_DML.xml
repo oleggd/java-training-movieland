@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+        
+    <changeSet dbms="postgresql" id="install.initial.B6-DML" author="install.user" runOnChange="true">
+        <comment>B-6 DML part</comment>
+        <sql endDelimiter="\n/" splitStatements="false">
+            TRUNCATE TABLE country;
+            TRUNCATE TABLE movie_country;
+        </sql>
+        <!-- tables -->
+        <comment> All data</comment> 
+        <sqlFile path="scripts/load_country.sql"          endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <sqlFile path="scripts/load_movie_country.sql"    endDelimiter="\n" splitStatements="false" relativeToChangelogFile="true"/>
+        <!--sql endDelimiter="\n/" splitStatements="false">
+            INSERT INTO movie_country SELECT m.id, c.id FROM movies m LEFT join country c ON  m.country LIKE '%'||c.name||'%' WHERE c.id IS NOT NULL ORDER BY 1,2;
+        </sql-->
+
+        <!-- Service section  -->
+    </changeSet>
+</databaseChangeLog>

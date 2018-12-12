@@ -1,6 +1,6 @@
 package com.movieland.entity;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 public class Movie {
 
@@ -8,12 +8,13 @@ public class Movie {
     private String name;
     private String nameOriginal;
     private int year;
-    private String country;
     private String description;
     private Double rating;
     private Double price;
-    private LocalDateTime creationDate;
     private String poster;
+    private List<Country> countries;
+    private List<Genre> genres;
+    private List<Review> reviews;
 
     public String getName() {
         return name;
@@ -39,17 +40,23 @@ public class Movie {
         this.year = year;
     }
 
-    public String getCountry() {
-        return country;
+    public List<Country> getCountry() {
+        return countries;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountries(List<Country> countries) {
+        this.countries = countries;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public List<Genre> getGenres() { return genres; }
+
+    public void setGenres(List<Genre> genres) { this.genres = genres; }
+
+    public List<Review> getReviews() { return reviews; }
+
+    public void setReviews(List<Review> reviews) { this.reviews = reviews; }
+
+    public String getDescription() { return description; }
 
     public void setDescription(String description) {
         this.description = description;
@@ -69,14 +76,6 @@ public class Movie {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
     }
 
     public int getId() {
@@ -101,11 +100,9 @@ public class Movie {
                 " name : " + name + "," +
                 " nameOriginal : " + nameOriginal + "," +
                 " year : " + year + "," +
-                " country : " + country + "," +
                 " description : " + description + "," +
                 " rating : " + rating + "," +
                 " price : " + price + "," +
-                " creationDate : " + creationDate + "," +
                 " poster : " + poster;
     }
 }

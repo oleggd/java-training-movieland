@@ -45,6 +45,12 @@ public class MovieController {
         return movieService.getByGenre(id, requestParameters);
     }
 
+    @GetMapping(params = "id", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Movie getMovieById(@RequestParam("id") int id) {
+        log.info("Get movies by id {}", id);
+        return movieService.getById(id);
+    }
+
     @Autowired
     public void setMovieService(MovieService movieService) {
         this.movieService = movieService;
@@ -75,5 +81,4 @@ public class MovieController {
     public void initBinder(final WebDataBinder webdataBinder) {
         webdataBinder.registerCustomEditor(SortDirection.class, new SortDirectionConverter());
     }
-
 }

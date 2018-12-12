@@ -25,6 +25,7 @@ public class CachedGenreDao implements GenreDao {
         return  new ArrayList<>(this.genres);
     }
 
+
     @PostConstruct
     @Scheduled(initialDelayString = "${cache.initialDelay:5000}", fixedDelayString = "${cache.fixedDelay:14400000}")
     public void refreshCash () {
@@ -32,6 +33,11 @@ public class CachedGenreDao implements GenreDao {
         this.genres = genreDao.getAll();
     }
 
+    @Override
+    public List<Genre> getByMovieId(int id) {
+        log.info("Get all genre by movie id {}", id);
+        return genreDao.getByMovieId(id);
+    }
     @Autowired
     public void setGenreDao(GenreDao genreDao) {
         this.genreDao = genreDao;
